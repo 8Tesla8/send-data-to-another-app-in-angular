@@ -1,7 +1,9 @@
 
-Query Parameter value:<input type="text" [(ngModel)]="paramValue"> <br>
+Query Parameter value:<input type="text" [(ngModel)]="queryParamValue"> <br>
 <button (click)="addQueryParameter()">addQueryParameter</button>
 <button (click)="getQueryParams()">getQueryParams</button>
+<br>
+Query Parameter value from service: {{queryParamValueFromService}}
 
 <br><br>
 
@@ -9,3 +11,5 @@ Cookie value:<input type="text" [(ngModel)]="cookieValue"> <br>
 <button (click)="addCookie()">addCookie</button>
 <button (click)="getCookie()">getCookie</button>
 <button (click)="deleteCookie()">deleteCookie</button>
+<br>
+Cookie value from service: {{cookieValueFromService}}

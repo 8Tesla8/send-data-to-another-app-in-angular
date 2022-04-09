@@ -22,7 +22,7 @@ export class AppQueryParameterService {
           });
     }
 
-    public getQueryParameter():string{
+    public getQueryParameter():string | undefined{
         let paramValue = this._route.snapshot.queryParams[this._queryParamKey];
         return paramValue;
     }

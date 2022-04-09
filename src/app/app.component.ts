@@ -9,8 +9,12 @@ import { AppQueryParameterService } from './services/app.url-query.service';
 })
 export class AppComponent {
 
-  public paramValue = "";
+  public queryParamValue = "";
+  public queryParamValueFromService = "";
+
   public cookieValue = "";
+  public cookieValueFromService = "";
+
 
   constructor(
     private _queryParameterService: AppQueryParameterService,
@@ -19,12 +23,18 @@ export class AppComponent {
 
 
   public addQueryParameter():void{
-    this._queryParameterService.addQueryParameter(this.paramValue);
+    this._queryParameterService.addQueryParameter(this.queryParamValue);
   }
 
   public getQueryParams():void{
-    let param = this._queryParameterService.getQueryParameter();
-    console.log(param);
+    let val = this._queryParameterService.getQueryParameter();
+
+    if(val){
+      this.queryParamValueFromService = val;
+    }
+    else {
+      this.queryParamValueFromService = 'undefined';
+    }
   }
 
 
@@ -34,7 +44,14 @@ export class AppComponent {
 
   public getCookie():void{
     let val = this._cookieService.get();
-    console.log(val);
+
+    if(val){
+      this.cookieValueFromService = val;
+    }
+    else {
+      this.cookieValueFromService = 'undefined';
+    }
+
   }
 
   public deleteCookie():void{
