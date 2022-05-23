@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppCookieService } from './services/app.cookie.service';
+import { AppJsQueryParameterService } from './services/app.js-url-query.service';
 import { AppQueryParameterService } from './services/app.url-query.service';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AppQueryParameterService } from './services/app.url-query.service';
     CookieService,
     AppCookieService,
     AppQueryParameterService,
+    AppJsQueryParameterService,
   ],
   bootstrap: [AppComponent]
 })

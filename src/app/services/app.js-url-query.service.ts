@@ -1,47 +1,35 @@
 export class AppJsQueryParameterService{
 
-    private parametersForRequest:QueryParameter[] = [];
-    private parametersFromUrl:QueryParameter[] = [];
+    public getQueryParameters():QueryParameter[]{
+        const urlParams = new URLSearchParams(window.location.search);
 
+        let queryParams :QueryParameter[] = [];
+ 
+        for (const key of (urlParams as any).keys()) {
+            var value = urlParams.get(key) as string;
+            queryParams.push(new QueryParameter(key, value));
+        }
 
-    constructor() {
-        this.getQueryParameters();
+        return queryParams;
     }
 
 
-    private languageQueryParam ="lang";
-
-    public addLanguageParameter(langIdentifier:string): void {
-        this.parametersForRequest.push(new QueryParameter(this.languageQueryParam,langIdentifier));
-    }
-
-    public openUrlWithParameters(url:string): void{
-        let queryParametersStr = this.transformParametersInQueryParameters();
-
-        this.parametersForRequest = [];
-
+    public openUrlWithParameters(url:string, params: QueryParameter[]): void{
+        let queryParametersStr = this.transformParametersInQueryParameters(params);
         window.open(`${url}?${queryParametersStr}`, '_self');
     }
 
-    private transformParametersInQueryParameters():string{
+
+    private transformParametersInQueryParameters(params: QueryParameter[]):string{
         const queryParametersArr:string[]= [];
 
-        this.parametersForRequest.forEach(p => {
+        params.forEach(p => {
             queryParametersArr.push(encodeURIComponent(p.key) + '=' + encodeURIComponent(p.value));
         });
 
         return queryParametersArr.join('&');
     }
 
-
-    private getQueryParameters():void{
-        const urlParams = new URLSearchParams(window.location.search);
-
-        const langValue = urlParams.get(this.languageQueryParam);
-        if(langValue){
-            this.parametersFromUrl.push(new QueryParameter(this.languageQueryParam, langValue));
-        }
-    }
 }
 
 

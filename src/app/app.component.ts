@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppCookieService } from './services/app.cookie.service';
+import { AppJsQueryParameterService } from './services/app.js-url-query.service';
 import { AppQueryParameterService } from './services/app.url-query.service';
 
 @Component({
@@ -18,8 +19,12 @@ export class AppComponent {
 
   constructor(
     private _queryParameterService: AppQueryParameterService,
-    private _cookieService :AppCookieService
-  ){ }
+    private _cookieService :AppCookieService,
+    private _jsQueryParameterService:AppJsQueryParameterService
+  ){ 
+    var params = this._jsQueryParameterService.getQueryParameters();
+    console.log(params);
+  }
 
 
   public addQueryParameter():void{
